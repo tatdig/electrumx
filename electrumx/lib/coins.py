@@ -3119,3 +3119,30 @@ class CPUchain(Coin):
         '''Given a header return the hash.'''
         import cpupower
         return cpupower.getPoWHash(header)
+
+class Tdcoin(BitcoinMixin,Coin):
+    NAME = "TDCoin"
+    SHORTNAME = "TDC"
+    NET = "mainnet"
+    GENESIS_HASH = ('0000000018bf6fb29c9649e8a3149757'
+                    '6e1ac95afd32c3d051ca2d3b0d789ca1')
+    #0000000018bf6fb29c9649e8a31497576e1ac95afd32c3d051ca2d3b0d789ca1
+    #XPUB_VERBYTES = bytes.fromhex("0488b21e")
+    #XPRV_VERBYTES = bytes.fromhex("0488ade4")
+    RPC_PORT = 9902
+    TX_COUNT = 17752
+    TX_COUNT_HEIGHT = 16776
+    TX_PER_BLOCK = 1
+    P2PKH_VERBYTE = bytes.fromhex("41")
+    P2SH_VERBYTES = [bytes.fromhex("05")]
+    WIF_BYTE = bytes.fromhex("6b")
+
+class TdcoinSegwit(Tdcoin, Coin):
+    NAME = "TdcoinSegwit"
+    DESERIALIZER = lib_tx.DeserializerSegWit
+    MEMPOOL_HISTOGRAM_REFRESH_SECS = 120
+    TX_COUNT = 17752
+    TX_COUNT_HEIGHT = 16776
+    TX_PER_BLOCK = 1
+    #CRASH_CLIENT_VER = (3, 2, 3)
+    #BLACKLIST_URL = 'https://electrum.org/blacklist.json'
